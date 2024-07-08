@@ -1,25 +1,23 @@
-// Import createApi (function to create an API service) and fetchBaseQuery (a basic fetch wrapper)
-// from Redux Toolkit Query's React-specific entry point
+// Import the createApi and fetchBaseQuery functions from Redux Toolkit Query's React-specific entry point
 import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
 
-// Define an API using createApi
+// Define the base URL for the API
 const baseUrl = "https://fsa-puppy-bowl.herokuapp.com/api/2310-fsa-pt-web";
+
+// Create an API service using createApi
 export const puppyBowlApi = createApi({
-  // Unique string used in constructing Redux action types, state selectors, and React hook names
+  // Define a unique identifier for this API service
   reducerPath: "puppyBowlApi",
-  // Define a base query function that all endpoints will use as the base of their request
-  baseQuery: fetchBaseQuery(
-    { baseUrl }
-    // The base URL for all requests
-  ),
-  // Define endpoints for our API service
+  // Define the base query function for the API service
+  baseQuery: fetchBaseQuery({ baseUrl }),
+  // Define the endpoints for the API service
   endpoints: (builder) => ({
+    // Define a query endpoint to fetch the players
     getPlayers: builder.query({
       query: () => `/players`,
     }),
   }),
 });
 
+// Export the hook for the getPlayers query endpoint
 export const { useGetPlayersQuery } = puppyBowlApi;
-// Export hooks for each endpoint - in this case, a React hook that triggers the fetchPlayers query
-//DONE
