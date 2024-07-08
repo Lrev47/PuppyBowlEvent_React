@@ -66,3 +66,7 @@ The application uses CSS for styling. Key concepts include:
 ## Conclusion
 
 The PuppyBowlEvent project demonstrates the use of React, Redux Toolkit, and RTK Query to build a dynamic and interactive web application. It leverages modern JavaScript and state management techniques to create a seamless user experience. Enjoy exploring the Puppy Bowl and the adorable puppies participating in it!
+
+## Live Website
+
+You can view the live website at the following link: [PuppyBowlEvent](https://puppybowleventlrev.netlify.app)
