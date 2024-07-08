@@ -1,27 +1,19 @@
-// Import configureStore (function to create a Redux store with good default middleware settings)
-// from Redux Toolkit
+// Import configureStore from Redux Toolkit to create a Redux store
 import { configureStore } from "@reduxjs/toolkit";
 
-// Import the API service we defined (which includes the API endpoints and the reducer)
-import { puppyBowlApi, useGetPlayersQuery } from "../api/puppyBowlApi";
+// Import the API service and its hooks
+import { puppyBowlApi } from "../api/puppyBowlApi";
 
-// Create a Redux store
+// Create the Redux store
 export const store = configureStore({
-  // Define the reducer for the store
-  // We are adding the API service's reducer to our Redux store's reducer.
-  // This means the API service's actions will be dispatched to the API service's reducer.
+  // Add the API service's reducer to the store
   reducer: {
     [puppyBowlApi.reducerPath]: puppyBowlApi.reducer,
-    // The key is the reducerPath we defined in our API service, and the value is the reducer
   },
-
-  // Add any additional middleware
-  // getDefaultMiddleware is a function that returns the default middleware used by Redux Toolkit
-  // We're concatenating our API service's middleware to the array of default middleware
-  // This means that when we dispatch an action, the API service's middleware will have a chance to handle it
+  // Add the API service's middleware to the store
   middleware: (getDefaultMiddleware) =>
     getDefaultMiddleware().concat(puppyBowlApi.middleware),
-  //need to add middleware function in API.js
 });
 
+// Export the store as the default export
 export default store;
