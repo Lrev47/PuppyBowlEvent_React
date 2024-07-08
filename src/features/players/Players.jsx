@@ -1,27 +1,26 @@
 // Import the React library
 import React from "react";
-// Import the generated hook from our RTK Query API slice
+// Import the hook from the API service to fetch players
 import { useGetPlayersQuery } from "../../api/puppyBowlApi";
-// Import the CSS styles for this component
+// Import the CSS file for styling
 import "../../index.css";
-// Define a new React component
+
+// Define the Players component
 const Players = () => {
-  // Use the generated hook to fetch data from the API
-  // When the component is first rendered, it will start the API fetch
-  // It will re-render each time the fetch status changes (e.g., "loading", "data arrived", "error")
+  // Use the hook to fetch the players data
   const { data, error, isLoading } = useGetPlayersQuery();
 
-  // Show a loading message while data is being fetched
+  // Show a loading message while the data is being fetched
   if (isLoading) {
     return <div>Loading...</div>;
   }
 
-  // Show an error message if the fetch failed
+  // Show an error message if there was an error fetching the data
   if (error) {
-    return <div> {error.message} </div>;
+    return <div>{error.message}</div>;
   }
 
-  // Show the fetched data after it has arrived
+  // Render the list of players after the data has been fetched
   return (
     <div>
       <div className="intro">
@@ -33,22 +32,17 @@ const Players = () => {
         </p>
       </div>
       <div className="players">
-        {/* Map through the data array and generate a div for each player */}
         {data.data.players.map((player) => (
-          // Use the player's ID as the key for this div
           <div key={player.id} className="player-card">
             <img
               className="player-image"
               src={player.imageUrl}
               alt={player.name}
             />
-
             <div className="player-details">
-              <h2> {player.name} </h2>
-
-              <p> {player.breed} </p>
-
-              <p> {player.status} </p>
+              <h2>{player.name}</h2>
+              <p>{player.breed}</p>
+              <p>{player.status}</p>
             </div>
           </div>
         ))}
@@ -57,4 +51,5 @@ const Players = () => {
   );
 };
 
+// Export the Players component as the default export
 export default Players;
